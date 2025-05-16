@@ -1,0 +1,123 @@
+{
+  "cupoms": [
+    {
+      "id": 1,
+      "nome": "pascoa5",
+      "desconto": 5,
+      "quantidade": 50,
+      "usos": 50
+    },
+    {
+      "id": 2,
+      "nome": "motaca",
+      "desconto": 5,
+      "quantidade": 1,
+      "usos": 1
+    },
+    {
+      "id": 3,
+      "nome": "Richard1",
+      "desconto": 5,
+      "quantidade": 1,
+      "usos": 0
+    },
+    {
+      "id": 4,
+      "nome": "salsinha",
+      "desconto": 5,
+      "quantidade": 1,
+      "usos": 1
+    },
+    {
+      "id": 5,
+      "nome": "niyvi",
+      "desconto": 5,
+      "quantidade": 1,
+      "usos": 1
+    },
+    {
+      "id": 6,
+      "nome": "ThurGoaT",
+      "desconto": 5,
+      "quantidade": 1,
+      "usos": 0
+    },
+    {
+      "id": 7,
+      "nome": "Lucas.h",
+      "desconto": 5,
+      "quantidade": 1,
+      "usos": 0
+    },
+    {
+      "id": 8,
+      "nome": "richard1260ws",
+      "desconto": 5,
+      "quantidade": 1,
+      "usos": 0
+    },
+    {
+      "id": 9,
+      "nome": "white",
+      "desconto": 5,
+      "quantidade": 1,
+      "usos": 1
+    },
+    {
+      "id": 10,
+      "nome": "NESCAU",
+      "desconto": 100,
+      "quantidade": 2,
+      "usos": 0
+    },
+    {
+      "id": 11,
+      "nome": "Vagos",
+      "desconto": 5,
+      "quantidade": 4,
+      "usos": 1
+    },
+    {
+      "id": 12,
+      "nome": "patinhofeio",
+      "desconto": 5,
+      "quantidade": 1,
+      "usos": 1
+    },
+    {
+      "id": 13,
+      "nome": "Kawagostoso",
+      "desconto": 5,
+      "quantidade": 1,
+      "usos": 1
+    },
+    {
+      "id": 14,
+      "nome": "Richard",
+      "desconto": 5,
+      "quantidade": 1,
+      "usos": 1
+    },
+    {
+      "id": 15,
+      "nome": "Fernandolindo",
+      "desconto": 5,
+      "quantidade": 1,
+      "usos": 1
+    },
+    {
+      "id": 16,
+      "nome": "cupom3",
+      "desconto": 3,
+      "quantidade": 1,
+      "usos": 1
+    },
+    {
+      "id": 17,
+      "nome": "homelander",
+      "desconto": 5,
+      "quantidade": 4,
+      "usos": 3
+    }
+  ]
+}

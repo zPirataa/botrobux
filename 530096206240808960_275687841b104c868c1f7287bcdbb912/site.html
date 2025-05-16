@@ -1,0 +1,557 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>StarK App's - Painel</title>
+    <link rel="icon"href="https://i.ibb.co/Fx0QYFy/starkapps.png">
+    
+    <style>
+    * {
+        padding: 0;
+        margin: 0;
+        box-sizing: border-box;
+        font-family: 'Poppins', sans-serif;
+        color: rgb(33, 33, 33);
+    }
+
+    body {
+        background: linear-gradient(135deg, rgba(240, 240, 240, 1), rgba(220, 220, 220, 1));
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+        overflow-x: hidden;
+    }
+
+    #top {
+        display: flex;
+        align-items: center;
+        gap: 15px;
+        padding: 10px;
+    }
+
+    #top img {
+        width: 50px;
+        height: 50px;
+        object-fit: cover;
+        border-radius: 50%;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        transition: transform 300ms, box-shadow 300ms;
+    }
+
+    #top img:hover {
+        transform: scale(1.1);
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+        cursor: pointer;
+    }
+
+    #container {
+        width: 60vw;
+        max-width: 800px;
+        min-height: 80vh;
+        background-color: white;
+        border-radius: 20px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        padding: 20px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 15px;
+        transition: 300ms;
+        animation: fadeIn 500ms ease-in-out;
+    }
+
+    #opcoes button {
+        width: 120px;
+        height: 35px;
+        border: none;
+        background-color: rgb(235, 205, 38);
+        color: white;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background-color 300ms, transform 300ms;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    #opcoes button:hover {
+        background-color: rgb(212, 157, 36);
+        transform: scale(0.98);
+    }
+
+    .content {
+        display: none;
+        opacity: 0;
+        transition: opacity 0.5s ease;
+        width: 100%;
+        height: 100%;
+        text-align: center;
+    }
+
+    .active {
+        display: block;
+        opacity: 1;
+        animation: slideIn 500ms ease-out;
+    }
+
+    .carregando {
+        animation: pulse 1s ease-in-out infinite;
+        color: rgb(255, 152, 0);
+    }
+
+    #informacao {
+        padding: 10px;
+        background-color: rgb(245, 245, 245);
+        width: 100%;
+        max-width: 500px;
+        margin-bottom: 10px;
+        border-radius: 10px;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        cursor: pointer;
+        transition: transform 300ms, box-shadow 300ms;
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        gap: 10px;
+    }
+
+     button {
+        border:none;
+        background-color: rgb(82, 159, 231);
+        color: white;
+        padding:7px;
+        border-radius: 10px;
+        box-shadow: rgb(82, 159, 231) 0px 0px 4px;
+        transition:200ms;
+        cursor: pointer; 
+    }
+
+     button:hover {
+        transform: scale(1.01);
+        background-color: rgb(69, 148, 221)
+    }
+
+    #informacao input {
+        border:none;
+        background-color: rgb(82, 159, 231);
+        color: white;
+        padding:7px;
+        border-radius: 10px;
+        transition: 200ms
+        
+    }
+
+    #informacao input:focus {
+        outline: none;
+        transform: scale(1.01);
+        background-color: rgb(69, 148, 221)
+    }
+
+    #informacao input::placeholder {
+        color: rgb(230, 230, 230)
+    }
+
+    #informacao img {
+        width: 35px;
+        height: 35px;
+        border-radius: 50%;
+        object-fit: cover;
+    }
+
+    #informacao:hover {
+        transform: translateX(5px) scale(1.02);
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+    }
+
+    @keyframes pulse {
+        0% { transform: scale(1); }
+        50% { transform: scale(1.1); }
+        100% { transform: scale(1); }
+    }
+
+    @keyframes slideIn {
+        0% { opacity: 0; transform: translateY(50px); }
+        100% { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes fadeIn {
+        from { opacity: 0; }
+        to { opacity: 1; }
+    }
+
+    @media (max-width: 768px) {
+        #container {
+            width: 90%;
+            padding: 15px;
+        }
+        #opcoes button {
+            width: 100px;
+            height: 30px;
+        }
+        #informacao {
+            flex-direction: row;
+            padding: 8px;
+            gap: 5px;
+        }
+        #informacao img {
+            width: 30px;
+            height: 30px;
+        }
+    }
+
+    
+
+    
+
+    @media (max-width: 768px) {
+        #top {
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 5px;
+        }
+    }
+
+    @media (max-width: 480px) {
+        body {
+            display:flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center
+        }
+
+         
+    }
+
+     
+
+     
+
+</style>
+
+    
+</head>
+
+<body>
+    <div id="top">
+        <a onclick="alert('© 2024 Moretti - Todos os direitos reservados')">
+            <img src="https://i.ibb.co/Fx0QYFy/starkapps.png">
+        </a>
+        <h1>StarK App's - Painel de controle</h1>
+    </div>
+
+    <div id="container">
+        <div id="opcoes">
+            <button onclick="showTab('estatisticas')">Status</button>
+            <button onclick="showTab('config')">Configuração</button>
+        </div>
+
+        <div id="content-area">
+            <div id="estatisticas" class="content active">
+                <h2>Status do bot:</h2>
+                <br><br>
+                <div id="informacao">
+                    <img src="https://i.ibb.co/sbWYzdZ/botao-de-informacao.png">
+                    <h3 id="conectado" class="carregando">Bot conectado: Carregando...</h3>
+                </div>
+                <div id="informacao">
+                    <img src="https://i.ibb.co/sbWYzdZ/botao-de-informacao.png">
+                    <h3 id="expira" class="carregando">Assinatura expira em: Carregando...</h3>
+                </div>
+     
+            </div>
+            <div id="config" class="content">
+                <h2>Configuração</h2>
+                <p>Aqui você pode gerenciar seu bot.</p>
+            
+                <div id="informacao">
+                    <h3>Canais</h3>
+                    <input placeholder="Logs Compras:" id="logs-compras">
+                    <input placeholder="Logs Entregas:" id="logs-entregas">
+                    <input placeholder="Database:" id="database">
+                    <input placeholder="QR Codes:" id="qr-codes">
+                </div>
+            
+                <div id="informacao">
+                    <h3>Categorias</h3>
+                    <input placeholder="Carrinhos Robux:" id="carrinhos-robux">
+                    <input placeholder="Aprovados Robux:" id="aprovados-robux">
+                    <input placeholder="Carrinhos Gamepass:" id="carrinhos-gamepass">
+                    <input placeholder="Aprovados Gamepass:" id="aprovados-gamepass">
+                    <input placeholder="Tickets:" id="tickets">
+                </div>
+            
+                <div id="informacao">
+                    <h3>Cargo de cliente</h3>
+                    <input placeholder="Cargo Cliente: 1296261125482086440" id="cargo-cliente">
+                </div>
+            
+                <div id="informacao">
+                    <h3>Textos</h3>
+                    <input placeholder="Botão Comprar Robux:" id="botao-comprar-robux">
+                    <input placeholder="Botão Comprar Gamepass:" id="botao-comprar-gamepass">
+                    <input placeholder="Botão Abrir Ticket:" id="botao-abrir-ticket">
+                </div>
+            
+                <div id="informacao">
+                    <h3>Valores</h3>
+                    <input placeholder="K Robux:" id="k-robux">
+                    <input placeholder="K Gamepass:" id="k-gamepass">
+                    <input placeholder="K Jogos:" id="k-jogos">
+                </div>
+            
+                <div id="informacao">
+                    <h3>Emojis</h3>
+                    <input placeholder="Emoji Robux:" id="emoji-robux">
+                    <input placeholder="Emoji QR Code:" id="emoji-qrcode">
+                    <input placeholder="Emoji Pix:" id="emoji-pix">
+                    <input placeholder="Emoji +:" id="emoji-mais">
+                    <input placeholder="Emoji -:" id="emoji-menos">
+                    <input placeholder="Seta Esquerda:" id="seta-esquerda">
+                    <input placeholder="Seta Direita:" id="seta-direita">
+                </div>
+            
+                <div id="informacao">
+                    <h3>Imagens</h3>
+                    <input placeholder="Thumbnail: " id="thumbnail">
+                    <input placeholder="Compre Aqui: " id="compre-aqui">
+                    <input placeholder="Obrigado por comprar conosco: " id="obrigado-por-comprar-conosco">
+                </div>
+            
+                <div id="informacao">
+                    <h3>Geral</h3>
+                    <input placeholder="Cor Embeds: #e2df12" id="cor-embeds">
+                    <input placeholder="Mercado Pago: APP_USR-xxxx" id="mp">
+                    <input placeholder="Token Bot: MTI5Nj..." id="token">
+                    <input placeholder="QR Div: Moretti Store" id="qr-div">
+                </div>
+            
+                <button onclick="salvarAlteracoes()">Salvar Alterações</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let url = `https://centraldosrobux.squareweb.app/`
+        const data = new URLSearchParams(window.location.search)
+        const token = data.get("token")
+        function link(oi) {
+            return `${url}${oi}/?token=${token}`
+        }
+
+
+        function showTab(tabId) {
+            let contents = document.querySelectorAll('.content');
+            contents.forEach(content => {
+                content.classList.remove('active');
+            });
+            document.getElementById(tabId).classList.add('active');
+        }
+
+        async function salvarAlteracoes() {
+            const updates = [];
+
+            if (document.getElementById('logs-compras').value !== "") {
+                updates.push({ path: 'canais/logs-compras', value: document.getElementById('logs-compras').value });
+            }
+            if (document.getElementById('logs-entregas').value !== "") {
+                updates.push({ path: 'canais/logs-entregas', value: document.getElementById('logs-entregas').value });
+            }
+            if (document.getElementById('database').value !== "") {
+                updates.push({ path: 'canais/database', value: document.getElementById('database').value });
+            }
+            if (document.getElementById('qr-codes').value !== "") {
+                updates.push({ path: 'canais/qr-codes', value: document.getElementById('qr-codes').value });
+            }
+
+            if (document.getElementById('carrinhos-robux').value !== "") {
+                updates.push({ path: 'categorias/carrinhos-robux', value: document.getElementById('carrinhos-robux').value });
+            }
+            if (document.getElementById('aprovados-robux').value !== "") {
+                updates.push({ path: 'categorias/aprovados-robux', value: document.getElementById('aprovados-robux').value });
+            }
+            if (document.getElementById('carrinhos-gamepass').value !== "") {
+                updates.push({ path: 'categorias/carrinhos-gamepass', value: document.getElementById('carrinhos-gamepass').value });
+            }
+            if (document.getElementById('aprovados-gamepass').value !== "") {
+                updates.push({ path: 'categorias/aprovados-gamepass', value: document.getElementById('aprovados-gamepass').value });
+            }
+            if (document.getElementById('tickets').value !== "") {
+                updates.push({ path: 'categorias/tickets', value: document.getElementById('tickets').value });
+            }
+
+            if (document.getElementById('cargo-cliente').value !== "") {
+                updates.push({ path: 'cargos/cargo-cliente', value: document.getElementById('cargo-cliente').value });
+            }
+
+            if (document.getElementById('botao-comprar-robux').value !== "") {
+                updates.push({ path: 'textos/botão-comprar-robux', value: document.getElementById('botao-comprar-robux').value });
+            }
+            if (document.getElementById('botao-comprar-gamepass').value !== "") {
+                updates.push({ path: 'textos/botão-comprar-gamepass', value: document.getElementById('botao-comprar-gamepass').value });
+            }
+            if (document.getElementById('botao-abrir-ticket').value !== "") {
+                updates.push({ path: 'textos/botão-abrir-ticket', value: document.getElementById('botao-abrir-ticket').value });
+            }
+
+            if (document.getElementById('k-robux').value !== "") {
+                updates.push({ path: 'valores/k-robux', value: document.getElementById('k-robux').value });
+            }
+            if (document.getElementById('k-gamepass').value !== "") {
+                updates.push({ path: 'valores/k-gamepass', value: document.getElementById('k-gamepass').value });
+            }
+            if (document.getElementById('k-jogos').value !== "") {
+                updates.push({ path: 'valores/k-jogos', value: document.getElementById('k-jogos').value });
+            }
+
+            if (document.getElementById('emoji-robux').value !== "") {
+                updates.push({ path: 'emojis/robux', value: document.getElementById('emoji-robux').value });
+            }
+            if (document.getElementById('emoji-qrcode').value !== "") {
+                updates.push({ path: 'emojis/qrcode', value: document.getElementById('emoji-qrcode').value });
+            }
+            if (document.getElementById('emoji-pix').value !== "") {
+                updates.push({ path: 'emojis/pix', value: document.getElementById('emoji-pix').value });
+            }
+            if (document.getElementById('emoji-mais').value !== "") {
+                updates.push({ path: 'emojis/emoji mais +', value: document.getElementById('emoji-mais').value });
+            }
+            if (document.getElementById('emoji-menos').value !== "") {
+                updates.push({ path: 'emojis/emoji menos -', value: document.getElementById('emoji-menos').value });
+            }
+            if (document.getElementById('seta-esquerda').value !== "") {
+                updates.push({ path: 'emojis/seta esquerda', value: document.getElementById('seta-esquerda').value });
+            }
+            if (document.getElementById('seta-direita').value !== "") {
+                updates.push({ path: 'emojis/seta direita', value: document.getElementById('seta-direita').value });
+            }
+
+            if (document.getElementById('thumbnail').value !== "") {
+                updates.push({ path: 'imagens/thumbnail', value: document.getElementById('thumbnail').value });
+            }
+            if (document.getElementById('compre-aqui').value !== "") {
+                updates.push({ path: 'imagens/compre-aqui', value: document.getElementById('compre-aqui').value });
+            }
+            if (document.getElementById('obrigado-por-comprar-conosco').value !== "") {
+                updates.push({ path: 'imagens/obrigado-por-comprar-conosco', value: document.getElementById('obrigado-por-comprar-conosco').value });
+            }
+
+            if (document.getElementById('cor-embeds').value !== "") {
+                updates.push({ path: 'geral/cor-embeds', value: document.getElementById('cor-embeds').value });
+            }
+            if (document.getElementById('mp').value !== "") {
+                updates.push({ path: 'geral/mp', value: document.getElementById('mp').value });
+            }
+            if (document.getElementById('token').value !== "") {
+                updates.push({ path: 'geral/token', value: document.getElementById('token').value });
+            }
+            if (document.getElementById('qr-div').value !== "") {
+                updates.push({ path: 'geral/qr-div', value: document.getElementById('qr-div').value });
+            }
+
+            if (updates.length > 0) {
+                const response = await fetch(link('alterar'), {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ updates })
+                });
+
+                const result = await response.text();
+            } else {
+                alert('Nenhuma alteração feita.');
+            }
+        }
+
+        async function carregarConfig() {
+            const response = await fetch(link('config'));
+            const config = await response.json();
+
+            document.getElementById('logs-compras').value = config.canais["logs-compras"];
+            document.getElementById('logs-entregas').value = config.canais["logs-entregas"];
+            document.getElementById('database').value = config.canais["database"];
+            document.getElementById('qr-codes').value = config.canais["qr-codes"];
+
+            document.getElementById('carrinhos-robux').value = config.categorias["carrinhos-robux"];
+            document.getElementById('aprovados-robux').value = config.categorias["aprovados-robux"];
+            document.getElementById('carrinhos-gamepass').value = config.categorias["carrinhos-gamepass"];
+            document.getElementById('aprovados-gamepass').value = config.categorias["aprovados-gamepass"];
+            document.getElementById('tickets').value = config.categorias["tickets"];
+
+            document.getElementById('cargo-cliente').value = config.cargos["cargo-cliente"];
+
+            document.getElementById('botao-comprar-robux').value = config.textos["botão-comprar-robux"];
+            document.getElementById('botao-comprar-gamepass').value = config.textos["botão-comprar-gamepass"];
+            document.getElementById('botao-abrir-ticket').value = config.textos["botão-abrir-ticket"];
+
+            document.getElementById('k-robux').value = config.valores["k-robux"];
+            document.getElementById('k-gamepass').value = config.valores["k-gamepass"];
+            document.getElementById('k-jogos').value = config.valores["k-jogos"];
+
+            document.getElementById('emoji-robux').value = config.emojis["robux"];
+            document.getElementById('emoji-qrcode').value = config.emojis["qrcode"];
+            document.getElementById('emoji-pix').value = config.emojis["pix"];
+            document.getElementById('emoji-mais').value = config.emojis["emoji mais +"];
+            document.getElementById('emoji-menos').value = config.emojis["emoji menos -"];
+            document.getElementById('seta-esquerda').value = config.emojis["seta esquerda"];
+            document.getElementById('seta-direita').value = config.emojis["seta direita"];
+
+            document.getElementById('thumbnail').value = config.imagens["thumbnail"];
+            document.getElementById('compre-aqui').value = config.imagens["compre-aqui"];
+            document.getElementById('obrigado-por-comprar-conosco').value = config.imagens["obrigado-por-comprar-conosco"];
+
+            document.getElementById('cor-embeds').value = config.geral["cor-embeds"];
+            document.getElementById('mp').value = config.geral["mp"];
+            document.getElementById('token').value = config.geral["token"];
+            document.getElementById('qr-div').value = config.geral["qr-div"];
+
+            function adicionarTituloPlaceholder() {
+                const elementos = [
+                    'logs-compras', 'logs-entregas', 'database', 'qr-codes',
+                    'carrinhos-robux', 'aprovados-robux', 'carrinhos-gamepass', 'aprovados-gamepass', 'tickets',
+                    'cargo-cliente',
+                    'botao-comprar-robux', 'botao-comprar-gamepass', 'botao-abrir-ticket',
+                    'k-robux', 'k-gamepass', 'k-jogos',
+                    'emoji-robux', 'emoji-qrcode', 'emoji-pix', 'emoji-mais', 'emoji-menos', 'seta-esquerda', 'seta-direita',
+                    'thumbnail', 'compre-aqui', 'obrigado-por-comprar-conosco',
+                    'cor-embeds', 'mp', 'token', 'qr-div'
+                ];
+
+                elementos.forEach(id => {
+                    const elemento = document.getElementById(id);
+                    if (elemento) {
+                        elemento.addEventListener('mouseenter', () => {
+                            elemento.title = elemento.placeholder;
+                        });
+                    }
+                });
+            }
+
+            adicionarTituloPlaceholder();
+        }
+
+        window.onload = carregarConfig;
+
+        async function index() {
+            const result = await fetch(link('authenticator')).then(r => r.text())
+            if (result !== 'authenticated') {
+                return alert("O Token acima está inválido! Qualquer alteração no bot será esquecida!")
+            }
+
+            fetch(link('connected')).then(r => r.text()).then(result => {
+                document.querySelector("#conectado").classList.remove("carregando")
+                document.querySelector("#conectado").innerHTML = 'Bot conectado: '+result
+
+                fetch(link('expira')).then(r => r.text().then(r=>{
+                    document.querySelector("#expira").classList.remove("carregando")
+                    document.querySelector("#expira").innerHTML = `Assinatura expira em: ${r}`
+                }))
+            })
+        }
+
+        index();
+    </script>
+</body>
+
+</html>
